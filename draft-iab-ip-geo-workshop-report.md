@@ -33,6 +33,39 @@ author:
 normative:
 
 informative:
+  GAO:
+    target: https://www.ietf.org/slides/slides-ipgeows-paper-on-the-use-challenges-alternatives-of-ip-geolocation-data-00.pdf
+    title: "On the Use, Challenges, Alternatives of IP Geolocation Data"
+    author:
+      -
+        ins:  P. Gao
+        name: Paul Gao
+      -
+        ins:  E. Lee
+        name: Enock Lee
+      -
+        ins:  Y. Zhang
+        name: Yaozhong Zhang
+    date: November 2025
+  KATIRA:
+    target: https://www.ietf.org/slides/slides-ipgeows-paper-incorporating-user-agency-in-internet-geolocation-00.pdf
+    title: "Incorporating user agency in internet geolocation"
+    author:
+      -
+        ins:  D. Katira
+        name: Divyank Katira
+      -
+        ins:  G. Grover
+        name: Gurshabad Grover
+    date: November 2025
+  KLINE:
+    target: https://www.ietf.org/slides/slides-ipgeows-paper-anecdotal-history-of-rfc-00.pdf
+    title: "Anecdotal History of RFC 8805"
+    author:
+      -
+        ins:  E. Kline
+        name: Erik Kline
+    date: November 2025
   MUKHERJEE:
     target: https://www.ietf.org/slides/slides-ipgeows-paper-gaps-and-problems-in-current-ip-geolocation-approaches-00.pdf
     title: "Gaps and problems in current IP-Geolocation Approaches"
@@ -40,6 +73,17 @@ informative:
       -
         ins:  D. Mukherjee
         name: Debayan Mukherjee
+    date: November 2025
+  NYGREN:
+    target: https://www.ietf.org/slides/slides-ipgeows-paper-akamai-position-paper-for-iab-workshop-on-ip-address-geolocation-ip-geo-00.pdf
+    title: "Akamai Position Paper for 2025 IAB Workshop on IP Address Geolocation"
+    author:
+      -
+        ins:  E. Nygren
+        name: Erik Nygren
+      -
+        ins:  R. Dhanidina
+        name: Rizwan Dhanidina
     date: November 2025
   PAULY:
     target: https://www.ietf.org/slides/slides-ipgeows-paper-the-ip-geolocation-http-client-hint-00.pdf
@@ -111,7 +155,11 @@ This document has no IANA actions.
 
 The position papers are listed here:
 
+* P. Gao, E. Lee, Y. Zhang: On the Use, Challenges, Alternatives of IP Geolocation Data {{GAO}}
+* D. Katira, G. Grover: Incorporating user agency in internet geolocation {{KATIRA}}
+* E. Kline: Anecdotal History of RFC 8805 {{KLINE}}
 * D. Mukherjee: Gaps and problems in current IP-Geolocation Approaches {{MUKHERJEE}}
+* E. Nygren, R. Dhanidina: Akamai Position Paper for 2025 IAB Workshop on IP Address Geolocation {{NYGREN}}
 * T. Pauly, D. Schinazi, C. McMullin, D. Mitchell: The IP Geolocation HTTP Client Hint {{PAULY}}
 * A. Ramanathan, S. A. Jyothi: Systematic Detection and Correction of IP Geolocation Anomalies in Network Measurements {{RAMANATHAN}}
 

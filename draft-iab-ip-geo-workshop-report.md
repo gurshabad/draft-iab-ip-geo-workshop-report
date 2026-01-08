@@ -305,6 +305,14 @@ informative:
         ins:  S. A. Jyothi
         name: Sangeetha Abdu Jyothi
     date: November 2025
+  SCHATTE:
+    target: https://www.ietf.org/slides/slides-ipgeows-paper-iab-workshop-on-ip-address-geolocation-daniel-schatte-00.pdf
+    title: "IAB Workshop on IP Address Geolocation"
+    author:
+      -
+        ins:  D. Schatte
+        name: Daniel Schatte
+    date: December 2025
   SHARMA:
     target: https://www.ietf.org/slides/slides-ipgeows-paper-position-paper-for-iab-workshop-on-ip-address-geolocation-ipgeows-00.pdf
     title: "Position Paper for IAB Workshop on IP Address Geolocation"
@@ -360,6 +368,13 @@ TODO Introduction
 
 {::boilerplate bcp14-tagged}
 
+# Current Uses and Methods for IP Geolocation
+
+# Gaps and Issues with Geolocation
+
+# New Approaches
+
+# Conclusions and Next Steps
 
 # Security Considerations
 
@@ -375,7 +390,7 @@ This document has no IANA actions.
 
 # Position Papers
 
-29 position papers were accepted to the workshop. All papers are available at <https://datatracker.ietf.org/group/ipgeows/materials/>.
+30 position papers were accepted to the workshop. All papers are available at <https://datatracker.ietf.org/group/ipgeows/materials/>.
 
 The position papers are listed here:
 
@@ -404,6 +419,7 @@ The position papers are listed here:
 * J. Pan, J. Zhao: GeoFeed in the wild: A case study on StarlinkISP.net {{PAN}}
 * T. Pauly, D. Schinazi, C. McMullin, D. Mitchell: The IP Geolocation HTTP Client Hint {{PAULY}}
 * A. Ramanathan, S. A. Jyothi: Systematic Detection and Correction of IP Geolocation Anomalies in Network Measurements {{RAMANATHAN}}
+* D. Schatte: IAB Workshop on IP Address Geolocation {{SCHATTE}}
 * O. P. Sharma: Position Paper for IAB Workshop on IP Address Geolocation {{SHARMA}}
 * Z. Szamonek: The Need for an Alternative to IP-Based Geolocation {{SZAMONEK}}
 * M. Tariq: IP Address Geolocation – Use Cases, Gaps, and Future Directions {{TARIQ}}

@@ -329,7 +329,7 @@ informative:
         ins:  Z. Szamonek
         name: Zoltan Szamonek
     date: November 2025
-  SZAMONEK:
+  TARIQ:
     target: https://www.ietf.org/slides/slides-ipgeows-paper-ip-address-geolocation-use-cases-gaps-and-future-directions-00.pdf
     title: "IP Address Geolocation – Use Cases, Gaps, and Future Directions"
     author:

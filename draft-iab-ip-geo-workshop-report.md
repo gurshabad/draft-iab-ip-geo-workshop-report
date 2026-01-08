@@ -33,6 +33,42 @@ author:
 normative:
 
 informative:
+  MUKHERJEE:
+    target: https://www.ietf.org/slides/slides-ipgeows-paper-gaps-and-problems-in-current-ip-geolocation-approaches-00.pdf
+    title: "Gaps and problems in current IP-Geolocation Approaches"
+    author:
+      -
+        ins:  D. Mukherjee
+        name: Debayan Mukherjee
+    date: November 2025
+  PAULY:
+    target: https://www.ietf.org/slides/slides-ipgeows-paper-the-ip-geolocation-http-client-hint-00.pdf
+    title: "The IP Geolocation HTTP Client Hint"
+    author:
+      -
+        ins:  T. Pauly
+        name: Tommy Pauly
+      -
+        ins:  D. Schinazi
+        name: David Schinazi
+      -
+        ins:  C. McMullin
+        name: Ciara McMullin
+      -
+        ins:  D. Mitchell
+        name: Dustin Mitchell
+    date: November 2025
+  RAMANATHAN:
+    target: https://www.ietf.org/slides/slides-ipgeows-paper-systematic-detection-and-correction-of-ip-geolocation-anomalies-in-network-measurements-00.pdf
+    title: "Systematic Detection and Correction of IP Geolocation Anomalies in Network Measurements"
+    author:
+      -
+        ins:  A. Ramanathan
+        name: Alagappan Ramanathan
+      -
+        ins:  S. A. Jyothi
+        name: Sangeetha Abdu Jyothi
+    date: November 2025
 
 ...
 
@@ -71,7 +107,13 @@ This document has no IANA actions.
 
 # Position Papers
 
-TODO link position papers
+29 position papers were accepted to the workshop. All papers are available at <https://datatracker.ietf.org/group/ipgeows/materials/>.
+
+The position papers are listed here:
+
+* D. Mukherjee: Gaps and problems in current IP-Geolocation Approaches {{MUKHERJEE}}
+* T. Pauly, D. Schinazi, C. McMullin, D. Mitchell: The IP Geolocation HTTP Client Hint {{PAULY}}
+* A. Ramanathan, S. A. Jyothi: Systematic Detection and Correction of IP Geolocation Anomalies in Network Measurements {{RAMANATHAN}}
 
 # Workshop Participatns
 

@@ -427,11 +427,23 @@ The position papers are listed here:
 
 # Workshop Participatns
 
-TODO list participants
+The workshop participants were Alagappan Ramanathan, Andrew Chen, Augustin Laouar, Bill Jouris,
+Bob Hinden, Brian Haberman, Calvin Ardi, Carlos Martinez, Christopher Luna, Cindy Morgan,
+Daniel Schatte, David Schinazi, Debayan Mukherjee, Dhruv Dhody, Divyank Katira, Elizabeth Cronan,
+Enock Lee, Erik Kline, Erik Nygren, Francesco Bronzino, Gannon Barnett, Geoff Huston, Glenn Deen,
+Gurshabad Grover, Haniel Abrasos Malik Hayato Kazama, Hiroki Kawabata, James Clark, Jamie Sherry,
+Jana Iyengar, Jason Livingood, Jeff Brown, Jianping Pan, Jinwei Zhao, Joe Abley, Joel Jaeggli,
+Jordan Holland, Julien Gamba, Kaitlyn Pellak, Katherine Izhikevich, Kevin Phair, Lee Howard,
+Loïc Desgeorges, Marwan Fayed, Matthew Wilder, Max Mouchet, Md. Kamruzzaman Khan, Mudassar Tariq,
+Nalini Elkins, Nathan Owens, Nobuhiro Takamizawa, Oliver Gasser, Om Prakash Sharma, Paul Gao,
+Richard Barnes, Ricky Hosfelt, Rob Seastrom, Robert Kisteleki, Sid Mathur, Stephen Strowes,
+Suresh Krishnan, Tommy Croghan, Tommy Pauly, Warren Kumari, William Leung, Yaozhong Zhang,
+Yoshiki Ishida, and Zoltan Szamonek.
 
 # Workshop Program Committee
 
-TODO list PC members
+The workshop program committee members were Glenn Deen, Jana Iyengar, Mirja Kühlewind,
+Warren Kumari, Jason Livingood, and Tommy Pauly.
 
 # Acknowledgments
 {:numbered="false"}

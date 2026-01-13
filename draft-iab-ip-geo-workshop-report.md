@@ -353,38 +353,84 @@ informative:
 The IAB Workshop on IP Address Geolocation (IP-GEO) was held from December 3-5, 2025,
 as a three-day virtual meeting. It covered the use cases and background on
 using IP addresses as indicators of geolocation, explored various problems and
-challenges, and discussed future directions and opportunities to improve
-or replace the current practices.
+challenges that exist in that ecosystem, and discussed future directions
+and opportunities to improve or replace the current practices.
 
 
 --- middle
 
 # Introduction
 
-TODO Introduction
+The Internet Architecture Board (IAB) holds occasional workshops designed to consider
+long-term issues and strategies for the Internet, and to suggest future directions for
+the Internet architecture. This long-term planning function of the IAB is complementary
+to the ongoing engineering efforts performed by working groups of the
+Internet Engineering Task Force (IETF).
 
+Many services on the Internet use some form of mapping between IP addresses and a
+particular geolocation (such as inferring that traffic originating from a particular
+IP address means the traffic originates from a particular city). This is a widespread
+practice in many aspects of Internet and web traffic, even though IP addresses are
+not designed or guaranteed to have a singular or fixed location associated with them.
+
+Thus, practices around IP geolocation have a significant impact on the architecture
+and realities of deploying systems on the Internet, but they frequently not documented
+or incompletely documented in standards.
+
+The IAB convened a virtual workshop on IP Address Geolocation from December 3-5, 2025.
+The workshop aimed to:
+
+- Understand the current use cases for publishing, discovering, and consuming IP address
+geolocation data
+- Explore areas for improvement, both in ways to update or replace IP geolocation mechanisms
+- Consider mechanisms that satisfy the use cases without relying on geolocating IP addresses
+
+## About This Workshop Report Content
+
+This document is a report on the proceedings of the workshop. The views and positions 
+documented in this report are expressed during the workshop by participants and do not 
+necessarily reflect IAB's views and positions.
+
+Furthermore, the content of the report comes from presentations given by workshop 
+participants and notes taken during the discussions, without interpretation or 
+validation. Thus, the content of this report follows the flow and dialogue of the
+workshop but does not attempt to capture a consensus.
 
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
 
-# Current Uses and Methods for IP Geolocation
+# Workshop Scope and Discussion
 
-# Gaps and Issues with Geolocation
+## Current Uses of IP Geolocation
 
-# New Approaches
+### Use Cases for Mapping IP Addresses to Geolocation
 
-# Conclusions and Next Steps
+### Current Mechanisms for Mapping IP Addresses to Geolocation
+
+## IP Geolocation Gaps & Issues
+
+### Challenges With Geofeeds
+
+### Satellite Networks
+
+### Privacy Impacts
+
+## Future of Geolocation: Exploring Better Methods
+
+### New Approaches
+
+### What do/can/should we do?
+
+# Conclusions and Key Takeways
 
 # Security Considerations
 
-TODO Security
-
+This document is a workshop report and does not impact the security of the Internet.
 
 # IANA Considerations
 
 This document has no IANA actions.
-
 
 --- back
 

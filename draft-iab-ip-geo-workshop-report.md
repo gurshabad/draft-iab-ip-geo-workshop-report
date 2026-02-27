@@ -385,7 +385,7 @@ geolocation data ({{use-cases}})
 - Explore areas for improvement, both in ways to update or replace IP geolocation mechanisms ({{gaps-issues}})
 - Consider mechanisms that satisfy the use cases without relying on geolocating IP addresses ({{future}})
 
-## About This Workshop Report Content
+## About this workshop report content
 
 This document is a report on the proceedings of the workshop. The views and positions
 documented in this report are expressed during the workshop by participants and do not
@@ -409,13 +409,13 @@ to one or more physical locations.
 In this document, this is usually specifically referring to the format defined
 in {{?GEOFEED=RFC8805}}.
 
-# Current Uses of IP Geolocation {#use-cases}
+# Current uses of IP geolocation {#use-cases}
 
 The initial discussion of the workshop focused on identifying the current
 use cases for IP geolocation, and how they interact with today's mechanisms
 and ecosystem around IP geolocation.
 
-## Specific Use Cases
+## Why is IP geolocation used?
 
 Some of the identified use cases were focused on optimizations to user experience
 or network behavior, such as:
@@ -436,6 +436,9 @@ information:
 
 IP geolocation is often not the only signal used to satisfy these use cases,
 but it is often used as an important piece of them.
+
+All of these use cases are relying on IP geolocation being a passive and
+implicit signal, without explicit intent being communicated on network connections.
 
 Details of some of these use cases are included below.
 
@@ -487,11 +490,58 @@ standard triggers for security alerts.
 
 Operators increasingly use IP geolocation to comply with local laws, including:
 
-* Gambling and Betting regulations: Restricting access to users within specific jurisdictions.
-* Taxation: Determining the applicable VAT or sales tax based on the consumer's location.
-* Law Enforcement: Investigating cybercrime by mapping IP addresses to physical jurisdictions for warrant service.
+- Gambling and Betting regulations: Restricting access to users within specific jurisdictions.
+- Taxation: Determining the applicable VAT or sales tax based on the consumer's location.
+- Law Enforcement: Investigating cybercrime by mapping IP addresses to physical jurisdictions for warrant service.
 
-# IP Geolocation Gaps & Issues {#gaps-issues}
+## What are the current IP geolocation mechanisms?
+
+Geofeeds are defined by {{GEOFEED}} as CSV-formatted mappings from IP address
+subnets to locations, by country/region and city. {{?RFC9632}} additionally
+defines how to discover this data and to authenticate it using the
+Resource Public Key Infrastructure (RPKI).
+
+Often, servers that are checking IP geolocation information are not directly
+consuming geofeed information, but instead use the services of one or more
+IP geolocation providers. These services provide not only a mapping from IP
+address to location, but add in other information, such as notions of
+IP address "reputation" (indicating if they think this IP address represents
+traffic from a human user, an automated bot, or a malicious attacker) or
+a categorization (indicating if an address is associated with proxied or
+VPN traffic).
+
+IP geolocation providers use various signals to improve the
+accuracy of their mapping from IP address to location, and have notions
+of confidence in the validity of the mapping. The workshop noted that
+various providers won't necessarily agree on mappings; and, even when
+they do agree, that does not guarantee that the mapping is accurate.
+Additionally, the certainty around a location mapping is not something
+expressed in a standard format for geofeeds, so ambiguity is hidden.
+
+The workshop discussion noted that current mechanisms generally assume that
+there is a single (generally stable) location associated with an IP address.
+This is flawed for various reasons: an associated location may change (as
+in cellular networks or satellite networks), and often there may be many
+users at different locations behind a single address.
+
+## What does IP geolocation mean?
+
+One of the key points that was raised in discussion was that different use cases
+and different parties involved in using IP geolocation can have vastly different assumptions
+about what a particular IP-address-to-location mapping means. For any use case or
+deployment, a question needs to be asked: what is the claim being made about
+the IP geolocation mapping?
+
+There are various possible interpretations of a mapping. The location could mean:
+- The physical location of a user
+- The location of a network egress
+- The location of network infrastructure
+- The regulatory jurisdiction associated with a network
+
+Geofeeds provide mappings of IP addresses to locations, but they do not define
+any ontology to describe what these mappings are claiming.
+
+# IP geolocation gaps & issues {#gaps-issues}
 
 Day 1 discussions highlighted that the current ecosystem is fragile, opaque,
 and often inaccurate. The fundamental disconnect between the logical layer (IP)
@@ -499,7 +549,7 @@ and the physical layer (Geography) creates several systemic gaps. The most
 noticeable to end users is when they are shown search results or other content
 from a local area that does not correspond to their current location.
 
-## The "Magic" of Proprietary Databases
+## The "Magic" of proprietary databases
 
 A recurring theme was the opacity of commercial GeoIP databases. Participants
 expressed concern that:
@@ -508,14 +558,14 @@ expressed concern that:
 * There is no standardized feedback loop for ISPs to correct erroneous data in third-party databases.
 * Updates are asynchronous; an IP block transferred from an ISP in Asia to one in Europe may remain "located" in Asia in some databases for weeks or months.
 
-## The Impact of IPv4 Markets and Transfers
+## The impact of IPv4 markets and transfers
 
 With IPv4 exhaustion, the secondary market for address space is active. Blocks are
 frequently sold and moved globally. The "legacy" location data often sticks to
 these blocks in WHOIS registries or static datasets, leading to persistent
 misidentification of the new owners' locations.
 
-## Mobile Networks and CGNAT
+## Mobile networks and CGNAT
 
 Carrier-Grade NAT (CGNAT) and mobile architecture present significant challenges.
 A mobile device may be physically located in one city, but its traffic may exit
@@ -523,7 +573,7 @@ to the internet via a gateway in a different region. Geo-locating the IP
 identifies the gateway, not the user, rendering the data coarse or misleading
 for hyper-local applications.
 
-## VPNs, Proxies, and Evasion
+## VPNs, proxies, and evasion
 
 The widespread use of VPNs and Private Relays (e.g., Apple iCloud Private Relay)
 effectively breaks IP-based geolocation. While this is a feature for
@@ -531,7 +581,7 @@ privacy-conscious users, it defeats the utility of IP geolocation for rights man
 and fraud detection, leading to an "arms race" between detection services and
 obfuscation tools.
 
-## Lack of Granularity and Accuracy
+## Lack of granularity and accuracy
 
 While country-level accuracy is generally high (estimated >95%), city-level
 or coordinate-level accuracy degrades significantly. Participants noted instances
@@ -539,21 +589,21 @@ where IP geolocation defaults to the geographical center of a country or state
 when specific data is missing, creating "digital sinkholes" (e.g., the farm in
 Kansas mapped to millions of IPs).
 
-# Future of Geolocation: Exploring Better Methods {#future}
+# Future of geolocation: Exploring better methods {#future}
 
 The workshop concluded the by exploring architectural shifts that could improve
 the reliability and transparency of geolocation data without sacrificing user privacy.
 
-## User-Declared and Feed-Based Location (RFC 8805)
+## User-declared and feed-based location (RFC 8805)
 
 There was strong consensus on moving away from "guessing" location toward
 "declaring" it. The adoption of **RFC 8805 (A Format for Self-Published IP Geolocation Feeds)** was highlighted as a critical path forward.
 
-* **Mechanism:** ISPs and content providers publish a CSV file mapping theirprefixes to geocodes.
-* **Benefit:** This provides an authoritative source of truth directly from the network operator, removing the guesswork of third-party aggregators.
-* **Challenge:** Incentivizing ISPs to publish and maintain these feeds requires demonstrating operational ROI.
+- **Mechanism:** ISPs and content providers publish a CSV file mapping theirprefixes to geocodes.
+- **Benefit:** This provides an authoritative source of truth directly from the network operator, removing the guesswork of third-party aggregators.
+- **Challenge:** Incentivizing ISPs to publish and maintain these feeds requires demonstrating operational ROI.
 
-## Measurement-Based Geolocation
+## Measurement-based geolocation
 
 Discussions touched on active measurement techniques. Rather than relying on
 static databases, future systems could utilize active latency measurements
@@ -561,16 +611,16 @@ static databases, future systems could utilize active latency measurements
 the topological location of an IP address. This ties location closer to network
 topology rather than administrative registry data.
 
-## Splitting Location from Identity
+## Splitting location from identity
 
 Architecturally, the workshop considered if the application layer should handle
 location verification (e.g., via browser Geolocation API or GPS) rather than the
 network layer. This shifts the trust model:
 
-* **Current:** Trust the IP address (which can be spoofed/proxied).
-* **Future:** Trust a signed token from the device or a trusted location authority.
+- **Current:** Trust the IP address (which can be spoofed/proxied).
+- **Future:** Trust a signed token from the device or a trusted location authority.
 
-## Data Provenance and RPKI
+## Data provenance and RPKI
 
 Looking ahead, there is interest in leveraging the Resource Public Key
 Infrastructure (RPKI) to sign geolocation data. This would allow consumers

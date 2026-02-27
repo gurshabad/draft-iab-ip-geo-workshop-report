@@ -402,25 +402,25 @@ workshop but does not attempt to capture a consensus.
 
 # Workshop Scope and Discussion
 
-The workshop's discussion was wide-ranging. It first covered how IP Geolocation is currently used. Then it went over existing challenges with the solutions to these existing use cases today and finally explored potential options for the future. 
+The workshop's discussion was wide-ranging. It first covered how IP Geolocation is currently used. Then it went over existing challenges with the solutions to these existing use cases today and finally explored potential options for the future.
 
 # Current Uses of IP Geolocation
 
 The workshop participants identified a diverse set of use cases for IP Geolocation, ranging from critical network operations to commercial applications and regulatory compliance. It was noted that while IP addresses were originally designed as topological identifiers, they have become overloaded as proxies for physical location.
 
-### Network Optimization and CDN Selection
+## Network Optimization and CDN Selection
 
 Content Delivery Networks (CDNs) and cloud providers utilize geolocation data to route end-user traffic to the "closest" data center or edge node. While network latency (topological distance) is the ideal metric, physical location is often used as a heuristic for initial server selection. Misalignment here results in suboptimal routing and increased latency for users.
 
-### Content Rights Management and Licensing
+## Content Rights Management and Licensing
 
 A primary driver for IP geolocation remains the enforcement of territorial licensing agreements for streaming video, which is the largest volume of data at peak hour on the internet today. Streaming services and media broadcasters rely heavily on IP-to-location mapping to restrict content availability based on country or region (Geo-blocking). Participants noted that this creates a high-stakes environment where accuracy is directly tied to contractual compliance.
 
-### Fraud Detection and Security
+## Fraud Detection and Security
 
 Financial institutions and identity providers use geolocation as a signal for risk assessment. "Impossible travel" (a user logging in from two distant countries within a short timeframe) or traffic originating from sanctioned regions are standard triggers for security alerts.
 
-### Regulatory and Legal Compliance
+## Regulatory and Legal Compliance
 
 Operators increasingly use IP geolocation to comply with local laws, including:
 
@@ -428,15 +428,15 @@ Operators increasingly use IP geolocation to comply with local laws, including:
 * **Taxation:** Determining the applicable VAT or sales tax based on the consumer's location.
 * **Law Enforcement:** Investigating cybercrime by mapping IP addresses to physical jurisdictions for warrant service.
 
-### Targeted Advertising
+## Targeted Advertising
 
 The ad-tech ecosystem relies on geolocation to serve localized advertisements. While less critical than rights management, this represents the highest volume of geolocation queries globally.
 
 # IP Geolocation Gaps & Issues
 
-Day 1 discussions highlighted that the current ecosystem is fragile, opaque, and often inaccurate. The fundamental disconnect between the logical layer (IP) and the physical layer (Geography) creates several systemic gaps. The most noticeable to end users is when they are shown search results or other content from a local area that does not correspond to their current location. 
+Day 1 discussions highlighted that the current ecosystem is fragile, opaque, and often inaccurate. The fundamental disconnect between the logical layer (IP) and the physical layer (Geography) creates several systemic gaps. The most noticeable to end users is when they are shown search results or other content from a local area that does not correspond to their current location.
 
-### The "Magic" of Proprietary Databases
+## The "Magic" of Proprietary Databases
 
 A recurring theme was the opacity of commercial GeoIP databases. Participants expressed concern that:
 
@@ -444,19 +444,19 @@ A recurring theme was the opacity of commercial GeoIP databases. Participants ex
 * There is no standardized feedback loop for ISPs to correct erroneous data in third-party databases.
 * Updates are asynchronous; an IP block transferred from an ISP in Asia to one in Europe may remain "located" in Asia in some databases for weeks or months.
 
-### The Impact of IPv4 Markets and Transfers
+## The Impact of IPv4 Markets and Transfers
 
 With IPv4 exhaustion, the secondary market for address space is active. Blocks are frequently sold and moved globally. The "legacy" location data often sticks to these blocks in WHOIS registries or static datasets, leading to persistent misidentification of the new owners' locations.
 
-### Mobile Networks and CGNAT
+## Mobile Networks and CGNAT
 
 Carrier-Grade NAT (CGNAT) and mobile architecture present significant challenges. A mobile device may be physically located in one city, but its traffic may exit to the internet via a gateway in a different region. Geo-locating the IP identifies the gateway, not the user, rendering the data coarse or misleading for hyper-local applications.
 
-### VPNs, Proxies, and Evasion
+## VPNs, Proxies, and Evasion
 
 The widespread use of VPNs and Private Relays (e.g., Apple iCloud Private Relay) effectively breaks IP-based geolocation. While this is a feature for privacy-conscious users, it defeats the utility of IP geolocation for rights management and fraud detection, leading to an "arms race" between detection services and obfuscation tools.
 
-### Lack of Granularity and Accuracy
+## Lack of Granularity and Accuracy
 
 While country-level accuracy is generally high (estimated >95%), city-level or coordinate-level accuracy degrades significantly. Participants noted instances where IP geolocation defaults to the geographical center of a country or state when specific data is missing, creating "digital sinkholes" (e.g., the farm in Kansas mapped to millions of IPs).
 
@@ -464,7 +464,7 @@ While country-level accuracy is generally high (estimated >95%), city-level or c
 
 The workshop concluded the by exploring architectural shifts that could improve the reliability and transparency of geolocation data without sacrificing user privacy.
 
-### User-Declared and Feed-Based Location (RFC 8805)
+## User-Declared and Feed-Based Location (RFC 8805)
 
 There was strong consensus on moving away from "guessing" location toward "declaring" it. The adoption of **RFC 8805 (A Format for Self-Published IP Geolocation Feeds)** was highlighted as a critical path forward.
 
@@ -472,18 +472,18 @@ There was strong consensus on moving away from "guessing" location toward "decla
 * **Benefit:** This provides an authoritative source of truth directly from the network operator, removing the guesswork of third-party aggregators.
 * **Challenge:** Incentivizing ISPs to publish and maintain these feeds requires demonstrating operational ROI.
 
-### Measurement-Based Geolocation
+## Measurement-Based Geolocation
 
 Discussions touched on active measurement techniques. Rather than relying on static databases, future systems could utilize active latency measurements (ping triangulation or RTT analysis) from distributed vantage points to multilaterate the topological location of an IP address. This ties location closer to network topology rather than administrative registry data.
 
-### Splitting Location from Identity
+## Splitting Location from Identity
 
 Architecturally, the workshop considered if the application layer should handle location verification (e.g., via browser Geolocation API or GPS) rather than the network layer. This shifts the trust model:
 
 * **Current:** Trust the IP address (which can be spoofed/proxied).
 * **Future:** Trust a signed token from the device or a trusted location authority.
 
-### Data Provenance and RPKI
+## Data Provenance and RPKI
 
 Looking ahead, there is interest in leveraging the Resource Public Key Infrastructure (RPKI) to sign geolocation data. This would allow consumers of the data to cryptographically verify that the location assertion comes from the legitimate holder of the IP prefix, preventing hijacking of location data.
 

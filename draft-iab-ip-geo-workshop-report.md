@@ -487,8 +487,6 @@ Architecturally, the workshop considered if the application layer should handle 
 
 Looking ahead, there is interest in leveraging the Resource Public Key Infrastructure (RPKI) to sign geolocation data. This would allow consumers of the data to cryptographically verify that the location assertion comes from the legitimate holder of the IP prefix, preventing hijacking of location data.
 
-### What do/can/should we do?
-
 # Conclusions and Key Takeways
 
 # Security Considerations

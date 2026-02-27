@@ -381,9 +381,9 @@ The IAB convened a virtual workshop on IP Address Geolocation from December 3-5,
 The workshop aimed to:
 
 - Understand the current use cases for publishing, discovering, and consuming IP address
-geolocation data
-- Explore areas for improvement, both in ways to update or replace IP geolocation mechanisms
-- Consider mechanisms that satisfy the use cases without relying on geolocating IP addresses
+geolocation data ({{use-cases}})
+- Explore areas for improvement, both in ways to update or replace IP geolocation mechanisms ({{gaps-issues}})
+- Consider mechanisms that satisfy the use cases without relying on geolocating IP addresses ({{future}})
 
 ## About This Workshop Report Content
 
@@ -400,20 +400,67 @@ workshop but does not attempt to capture a consensus.
 
 {::boilerplate bcp14-tagged}
 
-# Workshop Scope and Discussion
+Additionally, throughout this document, the following terms are used:
 
-The workshop's discussion was wide-ranging. It first covered how IP Geolocation is
-currently used. Then it went over existing challenges with the solutions to these
-existing use cases today and finally explored potential options for the future.
+- "IP geolocation" is used to refer to the notion of mapping an IP address
+to one or more physical locations.
 
-# Current Uses of IP Geolocation
+- A "geofeed" refers to a file that provides IP geolocation information.
+In this document, this is usually specifically referring to the format defined
+in {{?GEOFEED=RFC8805}}.
 
-The workshop participants identified a diverse set of use cases for IP Geolocation,
-ranging from critical network operations to commercial applications and regulatory
-compliance. It was noted that while IP addresses were originally designed as
-topological identifiers, they have become overloaded as proxies for physical location.
+# Current Uses of IP Geolocation {#use-cases}
 
-## Network Optimization and CDN Selection
+The initial discussion of the workshop focused on identifying the current
+use cases for IP geolocation, and how they interact with today's mechanisms
+and ecosystem around IP geolocation.
+
+## Specific Use Cases
+
+Some of the identified use cases were focused on optimizations to user experience
+or network behavior, such as:
+
+- Automatically choosing appropriate language or regional settings for content
+- Providing relevant nearby content (for searches or serving advertisements)
+- Optimizing network routes and server selection, generally used to optimize Content Delivery Network (CDNs)
+
+For these use cases, errors in IP geolocation cause annoyance or performance issues,
+but are generally recoverable (the user can change the location or update their search).
+
+Other use cases treat the accuracy of the IP geolocation as a more critical piece of
+information:
+
+- Enforcing legal or compliance-related requirements
+- Enforcing contractual requirements between corporations
+- Providing information for disaster relief or law enforcement when other location signals are unavailable
+
+IP geolocation is often not the only signal used to satisfy these use cases,
+but it is often used as an important piece of them.
+
+Details of some of these use cases are included below.
+
+### Localized and Relevant Content
+
+As discussed in {{KLINE}}, one of the major motivations for the development 
+of the current geofeed format {{GEOFEED}} was to improve how search results
+were displayed based on client IP addresses. When users are performing
+searches or accessing sites that localize content, and the IP geolocation is
+incorrect, the user may be presented with content that is not relevant
+(seeing results for a far away city when searching for "pizza near me")
+or isn't localized appropriately (seeing content in an unexpected language,
+or prices in an unexpected currency).
+
+In the case of the development of {{GEOFEED}}, these issues were seen
+when deploying IPv6, highlighting that the ecosystem had mainly only mapped
+out IPv4 addresses previously.
+
+### Targeted Advertising
+
+The ad-tech ecosystem relies on geolocation to serve localized advertisements. While
+less critical than rights management, this represents the highest volume of
+geolocation queries globally.
+
+### Network Optimization and CDN Selection
 
 Content Delivery Networks (CDNs) and cloud providers utilize geolocation data to
 route end-user traffic to the "closest" data center or edge node. While network
@@ -421,7 +468,7 @@ latency (topological distance) is the ideal metric, physical location is often
 used as a heuristic for initial server selection. Misalignment here results in
 suboptimal routing and increased latency for users.
 
-## Content Rights Management and Licensing
+### Content Rights Management and Licensing
 
 A primary driver for IP geolocation remains the enforcement of territorial licensing
 agreements for streaming video, which is the largest volume of data at peak hour on
@@ -429,28 +476,22 @@ the internet today. Streaming services and media broadcasters rely heavily on
 IP-to-location mapping to restrict content availability based on country or region
 (Geo-blocking). Participants noted that this creates a high-stakes environment where accuracy is directly tied to contractual compliance.
 
-## Fraud Detection and Security
+### Fraud Detection and Security
 
 Financial institutions and identity providers use geolocation as a signal for risk
 assessment. "Impossible travel" (a user logging in from two distant countries
 within a short timeframe) or traffic originating from sanctioned regions are
 standard triggers for security alerts.
 
-## Regulatory and Legal Compliance
+### Regulatory and Legal Compliance
 
 Operators increasingly use IP geolocation to comply with local laws, including:
 
-* **Gambling and Betting regulations:** Restricting access to users within specific jurisdictions.
-* **Taxation:** Determining the applicable VAT or sales tax based on the consumer's location.
-* **Law Enforcement:** Investigating cybercrime by mapping IP addresses to physical jurisdictions for warrant service.
+* Gambling and Betting regulations: Restricting access to users within specific jurisdictions.
+* Taxation: Determining the applicable VAT or sales tax based on the consumer's location.
+* Law Enforcement: Investigating cybercrime by mapping IP addresses to physical jurisdictions for warrant service.
 
-## Targeted Advertising
-
-The ad-tech ecosystem relies on geolocation to serve localized advertisements. While
-less critical than rights management, this represents the highest volume of
-geolocation queries globally.
-
-# IP Geolocation Gaps & Issues
+# IP Geolocation Gaps & Issues {#gaps-issues}
 
 Day 1 discussions highlighted that the current ecosystem is fragile, opaque,
 and often inaccurate. The fundamental disconnect between the logical layer (IP)
@@ -498,7 +539,7 @@ where IP geolocation defaults to the geographical center of a country or state
 when specific data is missing, creating "digital sinkholes" (e.g., the farm in
 Kansas mapped to millions of IPs).
 
-# Future of Geolocation: Exploring Better Methods
+# Future of Geolocation: Exploring Better Methods {#future}
 
 The workshop concluded the by exploring architectural shifts that could improve
 the reliability and transparency of geolocation data without sacrificing user privacy.

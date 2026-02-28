@@ -398,9 +398,7 @@ workshop but does not attempt to capture a consensus.
 
 # Conventions and Definitions
 
-{::boilerplate bcp14-tagged}
-
-Additionally, throughout this document, the following terms are used:
+Throughout this document, the following terms are used:
 
 - "IP geolocation" is used to refer to the notion of mapping an IP address
 to one or more physical locations.

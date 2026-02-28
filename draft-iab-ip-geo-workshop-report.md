@@ -666,45 +666,111 @@ represented to IP geolocation providers; but other deployments of privacy servic
 do use geofeeds to preserve the general user location to avoid user experience
 or compliance issues.
 
-# Future of geolocation: Exploring better methods {#future}
+# Considering the future of geolocation {#future}
 
-The workshop concluded the by exploring architectural shifts that could improve
-the reliability and transparency of geolocation data without sacrificing user privacy.
+The final day of the workshop focused on next steps around IP geolocation,
+both in how to improve mechanisms and in how to build mechanisms that address
+the use cases in new ways.
 
-## User-declared and feed-based location (RFC 8805)
+One key recognition from the workshop was that IP geolocation, and the
+ecosystem around it, isn't going to go away or disappear. While it was
+not necessarily an intentional part of the Internet architecture, large
+parts of how the Internet functions have been established based on assumptions.
 
-There was strong consensus on moving away from "guessing" location toward
-"declaring" it. The adoption of **RFC 8805 (A Format for Self-Published IP Geolocation Feeds)** was highlighted as a critical path forward.
+However, it was also recognized that the role and functionality of IP geolocation
+can change, and in many ways ought to change. This section discusses some
+of the considerations raised, and suggests next steps.
 
-- **Mechanism:** ISPs and content providers publish a CSV file mapping theirprefixes to geocodes.
-- **Benefit:** This provides an authoritative source of truth directly from the network operator, removing the guesswork of third-party aggregators.
-- **Challenge:** Incentivizing ISPs to publish and maintain these feeds requires demonstrating operational ROI.
+## Why should IP geolocation change?
 
-## Measurement-based geolocation
+Various motivations for changing the status quo of the IP geolocation ecosystem
+were raised:
 
-Discussions touched on active measurement techniques. Rather than relying on
-static databases, future systems could utilize active latency measurements
-(ping triangulation or RTT analysis) from distributed vantage points to multilaterate
-the topological location of an IP address. This ties location closer to network
-topology rather than administrative registry data.
+- Existing geofeeds have technical gaps that need addressing in order
+to scale well and continue to be used effectively
+- New network deployments, such as satellite networks and privacy proxies,
+are stretching and challenging the status quo mechanisms
+- Pressure from new policies or regulations add requirements for accurate
+assessment of client location, which IP addresses cannot always provide
+- The bar for security and privacy is increasing, challenging the
+use of passive identifiers like IP addresses being used to tag location
 
-## Splitting location from identity
+These various motivations and pressures are often in conflict, and create
+requirements in different directions. Economic and regulatory incentives
+have shaped the status quo mechanisms, and will continue to shape the evolution
+of this space.
 
-Architecturally, the workshop considered if the application layer should handle
-location verification (e.g., via browser Geolocation API or GPS) rather than the
-network layer. This shifts the trust model:
+The technical community, and the various stakeholders in the ecosystem,
+play an important role in deciding how to handle these pressures and drive
+the change in the space of IP geolocation.
 
-- **Current:** Trust the IP address (which can be spoofed/proxied).
-- **Future:** Trust a signed token from the device or a trusted location authority.
+## In what ways could IP geolocation change?
 
-## Data provenance and RPKI
+Two high-level categories of changes were discussed.
 
-Looking ahead, there is interest in leveraging the Resource Public Key
-Infrastructure (RPKI) to sign geolocation data. This would allow consumers
-of the data to cryptographically verify that the location assertion comes
-from the legitimate holder of the IP prefix, preventing hijacking of location data.
+First, there are a number of ways in which geofeeds themselves can be improved:
 
-# Conclusions and Key Takeways
+- Add the ability to express infrastructure vs. user locations
+- Get beyond the assumption that an IP address always maps to a single location
+- Better handle the dynamic nature of geolocation (time-to-live indications, timestamps,
+live updates to feeds)
+- More accurately represent the granularity and specificity of geolocation mappings; be
+able to express certainty levels
+- Improve tooling for publishing, validating, and consuming geofeeds
+- Improve measurements for determining accurate geolocation
+- Rely more on the RPKI to more reliably verify location claims
+
+Second, and more ambitiously, the community can consider alternative solutions
+to the use cases behind IP geolocation that do not rely on IP address mapping.
+{{SZAMONEK}}, {{LAOUAR}}, and {{PAULY}} propose various ways forward here. These
+explore ways to let users provide location hints with consent, and involve
+trying to provide explicit signals that involve trust and verifiability.
+
+Across both of these categories, communicating information with more intentionality
+and clarity is a key change.
+
+## Considerations for future work
+
+When looking toward future work, the workshop discussion raised some key points to
+consider:
+
+- The community should work to explain clearly what geofeeds and IP geolocation are
+able to solve, and what problems they are ill-suited for.
+- As new technologies are introduced (either updated geofeeds or new alternative mechanisms),
+there need to be clear plans for transitions and incremental adoption.
+- New solutions need to avoid "ossification" and build in ways to continue to evolve
+and update.
+- New solutions should be careful designed to avoid creating worse privacy problems. For example,
+a pressure to have explicit signals for location could lead to increased sharing of more
+specific user location coordinates (such as from GPS data).
+- It is unlikely that any one new technical solution can address the various use cases
+that currently passively use IP geolocation. Different technical solutions will be
+fit for purpose for different use cases, and will not be one-size-fits-all.
+
+## Further work and consideration is needed
+
+A final conclusion of the workshop was that collaboration and discussion amongst the
+various stakeholders in this space will be a necessary part of making technical
+improvements. Not all of the stakeholders in this space are currently actively participating
+in standards discussions within the IETF, but standards work would benefit from
+working on improvements in this space.
+
+Some of the stakeholders include, but are not limited to:
+
+- IP geolocation providers
+- Client device platforms
+- Content publishers
+- Network operators
+- Data brokers
+- Enterprises
+- Firewall operators and vendors
+- VPN / proxy operators and vendors
+- IP address leasers
+- Policymakers
+- End users
+
+The exact shape of a forum for this community is not yet determined, but this
+report encourages further work and discussion in this space.
 
 # Security Considerations
 

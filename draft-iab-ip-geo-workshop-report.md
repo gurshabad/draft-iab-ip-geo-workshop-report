@@ -444,7 +444,7 @@ Details of some of these use cases are included below.
 
 ### Localized and Relevant Content
 
-As discussed in {{KLINE}}, one of the major motivations for the development 
+As discussed in {{KLINE}}, one of the major motivations for the development
 of the current geofeed format {{GEOFEED}} was to improve how search results
 were displayed based on client IP addresses. When users are performing
 searches or accessing sites that localize content, and the IP geolocation is
@@ -533,6 +533,7 @@ deployment, a question needs to be asked: what is the claim being made about
 the IP geolocation mapping?
 
 There are various possible interpretations of a mapping. The location could mean:
+
 - The physical location of a user
 - The location of a network egress
 - The location of network infrastructure
@@ -543,51 +544,127 @@ any ontology to describe what these mappings are claiming.
 
 # IP geolocation gaps & issues {#gaps-issues}
 
-Day 1 discussions highlighted that the current ecosystem is fragile, opaque,
-and often inaccurate. The fundamental disconnect between the logical layer (IP)
-and the physical layer (Geography) creates several systemic gaps. The most
-noticeable to end users is when they are shown search results or other content
-from a local area that does not correspond to their current location.
+The workshop also focused discussion around identifying challenges with
+the status quo mechanisms, specifically looking at gaps in current solutions
+and issues that they raise.
 
-## The "Magic" of proprietary databases
+These issues fall into different categories, detailed here.
 
-A recurring theme was the opacity of commercial GeoIP databases. Participants
-expressed concern that:
+## Architectural issues
 
-* Methodologies for determining location are proprietary secrets.
-* There is no standardized feedback loop for ISPs to correct erroneous data in third-party databases.
-* Updates are asynchronous; an IP block transferred from an ISP in Asia to one in Europe may remain "located" in Asia in some databases for weeks or months.
+At an achitectural level, IP addresses are not designed to be indications
+of physical location. This point was brought up in many contexts. This
+underlying issue causes various problems:
 
-## The impact of IPv4 markets and transfers
+- Geolocation effectiveness is reduced; accuracy issues often stem from
+the IP address being a poor indicator of location due to not having
+stable location or a one-to-one relationship with users.
 
-With IPv4 exhaustion, the secondary market for address space is active. Blocks are
-frequently sold and moved globally. The "legacy" location data often sticks to
-these blocks in WHOIS registries or static datasets, leading to persistent
-misidentification of the new owners' locations.
+- Privacy and lack of consent; the passive nature of looking at IP
+addresses and mapping them to locations means that users can have
+their location targeted without their knowledge, consent, or ability
+to opt out.
 
-## Mobile networks and CGNAT
+- Lack of support in standardization; IP geolocation is a very impactful
+part of deployment realities and heavily influences the experience users
+have, but changes to network protocols don't necessarily account for
+the impact on IP geolocation. This is seen in cases where deployments as
+varied as IPv6 address support on servers and privacy proxy systems all
+needed significant work and engagement with IP geolocation providers
+to ensure that user experiences still functioned.
 
-Carrier-Grade NAT (CGNAT) and mobile architecture present significant challenges.
-A mobile device may be physically located in one city, but its traffic may exit
+- Assumptions about the usefulness of geolocation; physical location
+does not necessarily correspond to network topologies, so systems assuming
+that closer physical locations will be faster can be detrimental to
+network performance.
+
+- Inconsistent effectiveness for security; IP geolocation is often
+used as an element of security or compliance checks, but often has errors
+and is hard to validate. It cannot be relied on for security properties,
+but ends up being used as such in some scenarios.
+
+## Geofeed gaps and inaccuracies
+
+Many of the issues raised were concerned with specifics of geofeeds.
+These take various forms, such as details that cannot currently be expressed
+in geofeeds, or inaccurate content in feeds.
+
+The issues raised include:
+
+- Entries cannot express an address being mapped to multiple locations, or
+express varying levels of confidence in a location mapping
+- Names of regions and cities may not be consistent across geofeeds (due to
+typos, different languages, etc.)
+- Identities of regions and cities may vary or have problematic geopolitical
+nuances
+- False specificity occurs when feeds map an address to a city, but the
+location associated with the address is much bigger than the city
+- Geofeed entries may be blatantly incorrect due to staleness or intentional
+inaccuracies
+- Geofeeds may be out of date or stale, without a time-to-live or refresh mechanism
+
+Some of the biggest challenges for providing an accurate geofeed are in dealing
+with satellite networks or mobile networks using Carrier-Grade NATs (CGNAT).
+A client device may have a particular true location, but its traffic may exit
 to the internet via a gateway in a different region. Geo-locating the IP
 identifies the gateway, not the user, rendering the data coarse or misleading
 for hyper-local applications.
 
-## VPNs, proxies, and evasion
-
-The widespread use of VPNs and Private Relays (e.g., Apple iCloud Private Relay)
-effectively breaks IP-based geolocation. While this is a feature for
-privacy-conscious users, it defeats the utility of IP geolocation for rights management
-and fraud detection, leading to an "arms race" between detection services and
-obfuscation tools.
-
-## Lack of granularity and accuracy
-
-While country-level accuracy is generally high (estimated >95%), city-level
+While country-level accuracy in geofeedds is generally high (estimated >95%), city-level
 or coordinate-level accuracy degrades significantly. Participants noted instances
 where IP geolocation defaults to the geographical center of a country or state
-when specific data is missing, creating "digital sinkholes" (e.g., the farm in
-Kansas mapped to millions of IPs).
+when specific data is missing, creating "digital sinkholes" (e.g., a farm in
+Kansas mapped to millions of IP addresses).
+
+## Ecosystem issues
+
+Some issues relate to the deployment and commercial realities of the
+IP geolocation ecosystem.
+
+IP geolocation providers currently use differing proprietary formats and
+techniques. Methodologies for determining location are proprietary, and
+there is no standardized feedback loop for Internet Service Providers (ISPs)
+to correct erroneous data in third-party databases.
+
+Additionally, updating the version of a IP geolocation database used by a server
+is asynchronous, and can be a manual process. When there is a major change, such
+as when an IP address block is transferred from an ISP in Asia to one in Europe,
+the addresses may remain "located" in Asia in some databases for weeks or months.
+
+With IPv4 exhaustion, the secondary market for address space is active and exacerbates
+these problems. IP address blocks are frequently sold and moved globally. The "legacy"
+location data often sticks to these blocks in WHOIS registries or static datasets,
+leading to persistent misidentification of the new owners' locations.
+
+## Location-based issues
+
+Assigning geolocation to addresses is fraught with issues around location borders.
+The discussion covered anecdotes of incorrect behavior that came from mobile
+devices being used near jurisdictional borders between two countries, where
+the device's IP geolocation could frequently "jump" between countries. Similarly,
+on borders between timezones, the correct behavior is often ambiguous if derived
+from IP addresses alone.
+
+## Privacy issues
+
+As discussed in {{?RFC6973}}, IP addresses can be used as identifiers to correlate
+user activity and reveal user identity. IP addresses are often considered
+Personally Identifiable Information (PII), and the correlation to geolocation
+makes this very sensitive information that can be correlated to other metadata
+that identifies users.
+
+The source IP addresses of a connection established by a client device working
+on behalf of a user does not come along with any specific consent for how the IP
+address will be used, and does not imply intent.
+
+Virtual Private Networks (VPNs) or proxies (such as privacy proxies discussed in
+{{?RFC9614}}) allow users to anonymize their specific IP addresses to avoid
+correlation. However, this can also come with a degredation in behavior by
+servers that rely on IP geolocation services to determine how to serve content.
+Sometimes VPNs or proxies intentionally obfuscate or change how the user is
+represented to IP geolocation providers; but other deployments of privacy services
+do use geofeeds to preserve the general user location to avoid user experience
+or compliance issues.
 
 # Future of geolocation: Exploring better methods {#future}
 

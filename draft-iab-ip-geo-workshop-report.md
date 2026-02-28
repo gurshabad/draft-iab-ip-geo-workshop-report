@@ -842,4 +842,4 @@ Warren Kumari, Jason Livingood, and Tommy Pauly.
 # Acknowledgments
 {:numbered="false"}
 
-TODO Acks
+Thanks to all of the workshop participants who attended and contributed papers to this effort!

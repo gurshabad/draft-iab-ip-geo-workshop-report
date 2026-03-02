@@ -345,7 +345,29 @@ informative:
         ins:  K. Vermeulen
         name: Kevin Vermeulen
     date: November 2025
-
+  DUTKOWSKA-ZUK:
+    target: https://www.usenix.org/system/files/sec22-dutkowska-zuk.pdf
+    title: "How and Why People Use Virtual Private Networks"
+    author:
+      -
+        ins:  A. Dutkowska-Zuk
+        name: Agnieszka Dutkowska-Zuk
+      -
+        ins:  A. Hounsel
+        name: Austin Hounsel
+      -
+        ins:  A. Morrill
+        name: Amy Morrill
+      -
+        ins:  A. Xiong
+        name: Andre Xiong
+      -
+        ins:  M. Chetty
+        name: Marshini Chetty
+      -
+        ins:  N. Feamster
+        name: Nick Feamster
+    date: August 2022
 ...
 
 --- abstract
@@ -649,16 +671,24 @@ As discussed in {{?RFC6973}}, IP addresses can be used as identifiers to correla
 user activity and reveal user identity. IP addresses are often considered
 Personally Identifiable Information (PII), and the correlation to geolocation
 makes this very sensitive information that can be correlated to other metadata
-that identifies users.
+that identifies users. 
+
+Commercial services enrich their datasets to improve 
+their location estimates, and can often succeed in pinpointing approximate 
+geographical coordinates and postal code of a user.
 
 The source IP addresses of a connection established by a client device working
 on behalf of a user does not come along with any specific consent for how the IP
-address will be used, and does not imply intent.
+address will be used, and does not imply intent for geolocation or otherwise.
+In essence: 
+Since IP addresses were never meant for geolocation, IP geolocation amounts to 
+abuse of network-layer metadata to derive private information about internet users 
+without their knowledge or consent. 
 
 Virtual Private Networks (VPNs) or proxies (such as privacy proxies discussed in
 {{?RFC9614}}) allow users to anonymize their specific IP addresses to avoid
-correlation. However, this can also come with a degredation in behavior by
-servers that rely on IP geolocation services to determine how to serve content.
+correlation, and are often used partly for this purpose. {{DUTKOWSKA-ZUK}}
+
 Sometimes VPNs or proxies intentionally obfuscate or change how the user is
 represented to IP geolocation providers; but other deployments of privacy services
 do use geofeeds to preserve the general user location to avoid user experience
@@ -692,6 +722,9 @@ are stretching and challenging the status quo mechanisms
 assessment of client location, which IP addresses cannot always provide
 - The bar for security and privacy is increasing, challenging the
 use of passive identifiers like IP addresses being used to tag location
+- There are already ways to perform consensual geolocation at 
+the application layer, such as with APIs that meet the W3C Geolocation
+specifications.
 
 These various motivations and pressures are often in conflict, and create
 requirements in different directions. Economic and regulatory incentives

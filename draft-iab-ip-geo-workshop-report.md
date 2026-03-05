@@ -627,7 +627,7 @@ inaccuracies
 
 Some participants also expressed the diminishing utility of IP geolocation for 
 compliance due to issues with accuracy and ease of circumvention. 
-{{CLARK}} {{BROWN}}
+{{CLARK}}
 
 Some of the biggest challenges for providing an accurate geofeed are in dealing
 with satellite networks or mobile networks using Carrier-Grade NATs (CGNAT).
@@ -687,9 +687,9 @@ The source IP addresses of a connection established by a client device working
 on behalf of a user does not come along with any specific consent for how the IP
 address will be used, and does not imply intent for geolocation or otherwise.
 In essence: 
-Since IP addresses were never meant for geolocation, IP geolocation amounts to 
-abuse of network-layer metadata to derive private information about internet users 
-without their knowledge or consent. 
+Since IP addresses were not designed for geolocating end-users, IP geolocation
+ amounts to abuse of network-layer metadata to derive private information 
+ about internet users without their knowledge or consent. 
 
 Virtual Private Networks (VPNs) or proxies (such as privacy proxies discussed in
 {{?RFC9614}}) allow users to anonymize their specific IP addresses to avoid

@@ -583,7 +583,9 @@ stable location or a one-to-one relationship with users.
 - Privacy and lack of consent; the passive nature of looking at IP
 addresses and mapping them to locations means that users can have
 their location targeted without their knowledge, consent, or ability
-to opt out.
+to opt out. Non-consensual geolocation also has the second-order effect 
+of IP geolocation providers profiling internet users through undisclosed 
+mechanisms to increase geolocation accuracy.
 
 - Lack of support in standardization; IP geolocation is a very impactful
 part of deployment realities and heavily influences the experience users
@@ -622,6 +624,10 @@ location associated with the address is much bigger than the city
 - Geofeed entries may be blatantly incorrect due to staleness or intentional
 inaccuracies
 - Geofeeds may be out of date or stale, without a time-to-live or refresh mechanism
+
+Some participants also expressed the diminishing utility of IP geolocation for 
+compliance due to issues with accuracy and ease of circumvention. 
+{{CLARK}} {{BROWN}}
 
 Some of the biggest challenges for providing an accurate geofeed are in dealing
 with satellite networks or mobile networks using Carrier-Grade NATs (CGNAT).
